@@ -1,0 +1,17 @@
+.search-container {
+    display: flex;
+    gap: 20px;
+    min-height: 57px;
+}
+
+.search-container input {
+    border: none;
+    border-radius: 0.25rem;
+    opacity: 0.8;
+    background: rgba(50, 50, 50, 0.80);
+    flex: 1;
+}
+
+.search-container button {
+    flex: 0 0 240px;
+}
