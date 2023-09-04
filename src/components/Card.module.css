@@ -1,0 +1,4 @@
+.card {
+    background-color: var(--background-dark);
+    padding: 2em;
+}
