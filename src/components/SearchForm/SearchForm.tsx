@@ -26,12 +26,13 @@ export function SearchForm({ searchTerm, onSearch }: PropsWithChildren<Props>): 
 	return (
 		<div className={styles.searchContainer}>
 			<input
+				data-testid="search-input"
 				type="text"
 				value={query}
 				onChange={handleInputChange}
 				onKeyDown={handleKeyPress}
 			/>
-			<button className="primary-button" onClick={performSearch}>Search</button>
+			<button data-testid="search-button" type="button" className="primary-button" onClick={performSearch}>Search</button>
 		</div>
 	);
 }
