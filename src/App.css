@@ -8,5 +8,10 @@
   width: 100%;
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 
 
