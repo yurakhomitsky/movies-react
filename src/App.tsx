@@ -1,15 +1,15 @@
 import { ReactElement, useState } from 'react';
 
 import './App.css';
-import { Counter } from './Counter/Counter.tsx';
 import { Header } from './Header/Header.tsx';
-import { Card, GenreSelect, SearchForm } from './components';
+import { Card, GenreSelect, SearchForm, SortBy } from './components';
 
 function App(): ReactElement {
-	const [count, setCount] = useState(0);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedGenre, setGenre] = useState<string | null>('All');
-	const [genres] = useState(['All', 'Documentary', 'Comedy', 'Horror', 'Crime']);
+	const [selectedSortOption, setSortOption] = useState<string | null>('Release Date');
+	const genres= ['All', 'Documentary', 'Comedy', 'Horror', 'Crime']
+	const sortByOptions = ['Release Date', 'Title'];
 
 	return (
 		<>
@@ -18,10 +18,11 @@ function App(): ReactElement {
 			</Header>
 			<main>
 				<Card>
-					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}></GenreSelect>
-					<Counter count={count}
-						onIncrease={() => setCount((prev) => prev + 1)}
-						onDecrease={() => setCount((prev) => prev === 0 ? 0 : prev - 1)}></Counter>
+					<header className="header-container">
+						<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}></GenreSelect>
+						<SortBy options={sortByOptions} selectedOption={selectedSortOption} onSelect={setSortOption}></SortBy>
+					</header>
+
 				</Card>
 			</main>
 
