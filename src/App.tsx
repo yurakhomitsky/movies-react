@@ -3,6 +3,7 @@ import { ReactElement, useState } from 'react';
 import './App.css';
 import { Header } from './Header/Header.tsx';
 import { Card, GenreSelect, SearchForm, SortBy } from './components';
+import { MoviesList } from './Movies';
 
 function App(): ReactElement {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -22,7 +23,7 @@ function App(): ReactElement {
 						<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}></GenreSelect>
 						<SortBy options={sortByOptions} selectedOption={selectedSortOption} onSelect={setSortOption}></SortBy>
 					</header>
-
+					<MoviesList movies={[{ image: '', name: 'SpiderMan', releaseYear: '2004', genres: ['Fight', 'Fantastic'] }]}></MoviesList>
 				</Card>
 			</main>
 
