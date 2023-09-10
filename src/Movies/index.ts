@@ -1,2 +1,3 @@
 export { MoviesList } from './MoviesList.tsx'
-export type { MovieModel } from './Movie.model.ts'
+export { MovieDetails } from './MovieDetails.tsx'
+export type { MovieModel } from './movie.model.ts'
