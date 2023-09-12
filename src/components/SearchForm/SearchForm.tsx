@@ -27,6 +27,7 @@ export function SearchForm({ searchTerm, onSearch }: PropsWithChildren<Props>): 
 		<div className={styles.searchContainer}>
 			<input
 				data-testid="search-input"
+				placeholder="What do you want to watch?"
 				type="text"
 				value={query}
 				onChange={handleInputChange}

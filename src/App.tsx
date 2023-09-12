@@ -3,8 +3,9 @@ import PosterImg from './assets/Poster.png';
 
 import './App.css';
 import { Header } from './Header/Header.tsx';
-import { Card, GenreSelect, SearchForm, SortBy } from './components';
-import { MovieDetails, MovieModel, MoviesList } from './Movies';
+import { ApplicationName, Card, GenreSelect, SearchForm, SearchIcon, SortBy } from './components';
+import { AddMovieButton, MovieDetails, MovieModel, MoviesList } from './Movies';
+import { Footer } from './Footer/Footer.tsx';
 
 function App(): ReactElement {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -28,22 +29,32 @@ function App(): ReactElement {
 		{
 			selectedMovie ?
 				<Card>
+					<div className="flex-between">
+						<ApplicationName></ApplicationName> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
+					</div>
 					<MovieDetails movie={movieDetails}></MovieDetails>
 				</Card> :
 				<Header>
-					<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm}></SearchForm>
+						<div className="search-app-header flex-between">
+							<ApplicationName></ApplicationName> <AddMovieButton></AddMovieButton>
+						</div>
+						<div className="movie-search">
+							<h2 className="search-field-title">Find your movie</h2>
+							<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm}></SearchForm>
+						</div>
 				</Header>
 		}
 
 		<main>
 			<Card>
-				<header className="header-container">
+				<header className="flex-between">
 					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}></GenreSelect>
 					<SortBy options={sortByOptions} selectedOption={selectedSortOption} onSelect={setSortOption}></SortBy>
 				</header>
 				<MoviesList movies={[movieDetails]} onMovieClick={setSelectedMovie}></MoviesList>
 			</Card>
 		</main>
+		<Footer></Footer>
 
 	</>);
 }
