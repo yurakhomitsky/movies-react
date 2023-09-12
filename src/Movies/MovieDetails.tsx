@@ -1,10 +1,10 @@
-import { MovieDetailsModel } from './movie-details.model.ts';
+import { MovieModel } from './movie.model.ts';
 import { ReactElement } from 'react';
 import styles from './MovieDetails.module.css';
 import { MovieGenres } from './MovieGenres.tsx';
 
 interface MovieDetailsProps {
-	movie: MovieDetailsModel;
+	movie: MovieModel;
 }
 
 export function MovieDetails({ movie }: MovieDetailsProps): ReactElement {
