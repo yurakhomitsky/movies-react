@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, ReactElement, useState } from 'react';
 import styles from './SearchForm.module.css';
+import { Button } from '../Button/Button.tsx';
 
 interface Props {
 	searchTerm: string;
@@ -33,7 +34,7 @@ export function SearchForm({ searchTerm, onSearch }: PropsWithChildren<Props>): 
 				onChange={handleInputChange}
 				onKeyDown={handleKeyPress}
 			/>
-			<button data-testid="search-button" type="button" className="primary-button" onClick={performSearch}>Search</button>
+			<Button data-testid="search-button" primary={true} onClick={performSearch}>Search</Button>
 		</div>
 	);
 }
