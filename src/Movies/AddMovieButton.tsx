@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Button } from '../components';
 
 export function AddMovieButton(): ReactElement {
 	const style: React.CSSProperties = {
@@ -7,5 +8,5 @@ export function AddMovieButton(): ReactElement {
 		fontSize: '1.2rem',
 		fontWeight: '600'
 	}
-	return <button className="text-primary" style={style}>+ Add Movie</button>
+	return <Button style={style}>+ Add Movie</Button>
 }

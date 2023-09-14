@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import styles from './GenreSelect.module.css';
+import { Button } from '../Button/Button.tsx';
 
 export interface Props {
 	selectedGenre: string | null;
@@ -11,11 +12,11 @@ export function GenreSelect({ selectedGenre, genres, onSelect }: Props): ReactEl
 	return <ul className={styles.genreList}>
 		{genres.map((genre: string, index: number) => {
 				return <li key={index}>
-					<button data-testid="genre-select-button" className={selectedGenre === genre ? styles.active : ''} type="button" onClick={() => {
+					<Button data-testid="genre-select-button" className={selectedGenre === genre ? styles.active : ''} onClick={() => {
 						onSelect(genre);
 					}}>
 						{genre}
-					</button>
+					</Button>
 				</li>;
 			}
 		)}
