@@ -27,14 +27,16 @@ function App(): ReactElement {
 	};
 	return (<>
 		{
-			selectedMovie ?
-				<Card>
-					<div className="flex-between">
-						<ApplicationName></ApplicationName> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
-					</div>
-					<MovieDetails movie={movieDetails}></MovieDetails>
-				</Card> :
-				<Header>
+			selectedMovie ? (
+					<Card>
+						<div className="flex-between">
+							<ApplicationName></ApplicationName> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
+						</div>
+						<MovieDetails movie={movieDetails}></MovieDetails>
+					</Card>
+				) :
+				(
+					<Header>
 						<div className="search-app-header flex-between">
 							<ApplicationName></ApplicationName> <AddMovieButton></AddMovieButton>
 						</div>
@@ -42,7 +44,8 @@ function App(): ReactElement {
 							<h2 className="search-field-title">Find your movie</h2>
 							<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm}></SearchForm>
 						</div>
-				</Header>
+					</Header>
+				)
 		}
 
 		<main>
@@ -55,7 +58,6 @@ function App(): ReactElement {
 			</Card>
 		</main>
 		<Footer></Footer>
-
 	</>);
 }
 

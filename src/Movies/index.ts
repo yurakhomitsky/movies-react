@@ -1,4 +1,4 @@
-export { MoviesList } from './MoviesList.tsx'
-export { MovieDetails } from './MovieDetails.tsx'
-export type { MovieModel } from './movie.model.ts'
-export { AddMovieButton } from './AddMovieButton.tsx'
+export { MoviesList } from './MoviesList/MoviesList.tsx'
+export { MovieDetails } from './MovieDetails/MovieDetails.tsx'
+export { AddMovieButton } from './AddMovieButton/AddMovieButton.tsx'
+export * from './models'
