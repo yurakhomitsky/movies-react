@@ -1,19 +1,19 @@
-import { MovieModel } from './movie.model.ts';
+import { MovieModel } from '../models';
 import styles from './MoviesList.module.css';
 import { ReactElement } from 'react';
-import { MovieTile } from './MovieTile.tsx';
-import { ContextMenu } from '../components';
+import { MovieTile } from '../MovieTile/MovieTile.tsx';
+import { ContextMenu } from '../../components';
 
 interface MoviesListProps {
 	movies: MovieModel[];
 	onMovieClick: (movie: MovieModel) => void
 }
 
-export function MoviesList({ movies, onMovieClick }: MoviesListProps): ReactElement {
-	const contextMenuItems = [
-		{ label: 'Edit', action: () => {} },
-		{ label: 'Delete', action: () => {} }]
+const contextMenuItems = [
+	{ label: 'Edit', action: () => {} },
+	{ label: 'Delete', action: () => {} }]
 
+export function MoviesList({ movies, onMovieClick }: MoviesListProps): ReactElement {
 	return <div className={styles.listGrid}>
 		{movies.map((movie, index) => {
 			return <ContextMenu key={index}  items={contextMenuItems}>

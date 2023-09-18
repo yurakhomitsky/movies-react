@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import styles from './MovieTile.module.css';
-import { MovieModel } from './movie.model.ts';
-import { MovieGenres } from './MovieGenres.tsx';
+import { MovieModel } from '../models/movie.model.ts';
+import { MovieGenres } from '../MovieGenres/MovieGenres.tsx';
 
 interface MovieTileProps {
 	movie: MovieModel;

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Button } from '../components';
+import { Button } from '../../components';
 
 export function AddMovieButton(): ReactElement {
 	const style: React.CSSProperties = {

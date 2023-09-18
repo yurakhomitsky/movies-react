@@ -1,7 +1,7 @@
-import { MovieModel } from './movie.model.ts';
+import { MovieModel } from '../models/movie.model.ts';
 import { ReactElement } from 'react';
 import styles from './MovieDetails.module.css';
-import { MovieGenres } from './MovieGenres.tsx';
+import { MovieGenres } from '../MovieGenres/MovieGenres.tsx';
 
 interface MovieDetailsProps {
 	movie: MovieModel;
