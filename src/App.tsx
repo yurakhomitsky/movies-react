@@ -28,36 +28,34 @@ function App(): ReactElement {
 	return (<>
 		{
 			selectedMovie ? (
-					<Card>
-						<div className="flex-between">
-							<ApplicationName></ApplicationName> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
-						</div>
-						<MovieDetails movie={movieDetails}></MovieDetails>
-					</Card>
-				) :
-				(
-					<Header>
-						<div className="search-app-header flex-between">
-							<ApplicationName></ApplicationName> <AddMovieButton></AddMovieButton>
-						</div>
-						<div className="movie-search">
-							<h2 className="search-field-title">Find your movie</h2>
-							<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm}></SearchForm>
-						</div>
-					</Header>
-				)
-		}
+				<Card>
+					<div className="flex-between">
+						<ApplicationName /> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
+					</div>
+					<MovieDetails movie={movieDetails} />
+				</Card>
+			) : (
+				<Header>
+					<div className="search-app-header flex-between">
+						<ApplicationName /> <AddMovieButton />
+					</div>
+					<div className="movie-search">
+						<h2 className="search-field-title">Find your movie</h2>
+						<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm} />
+					</div>
+				</Header>
+			)}
 
 		<main>
 			<Card>
 				<header className="flex-between">
-					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}></GenreSelect>
-					<SortBy options={sortByOptions} selectedOption={selectedSortOption} onSelect={setSortOption}></SortBy>
+					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre} />
+					<SortBy options={sortByOptions} selectedOption={selectedSortOption} onSelect={setSortOption} />
 				</header>
-				<MoviesList movies={[movieDetails]} onMovieClick={setSelectedMovie}></MoviesList>
+				<MoviesList movies={[movieDetails]} onMovieClick={setSelectedMovie} />
 			</Card>
 		</main>
-		<Footer></Footer>
+		<Footer />
 	</>);
 }
 

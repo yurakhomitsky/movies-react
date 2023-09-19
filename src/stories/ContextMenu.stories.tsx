@@ -19,7 +19,6 @@ type Story = StoryObj<typeof meta>;
 export const Context: Story = {
 	args: {
 		items: [{ label: 'Edit', action: () => {} }, { label: 'Delete', action: () => {} }],
-		children: <div>Right click me</div>
 	},
 };
 
