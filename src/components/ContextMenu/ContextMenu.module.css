@@ -1,6 +1,18 @@
+.context-menu-container {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.context-menu-container button {
+    border-radius: 50px;
+}
+
 .context-menu {
-    position: fixed;
-    z-index: 1000;
+    position: absolute;
+    z-index: 10;
+    top: 105%;
+    right: 5px;
     min-width: 120px;
     padding: 0.5rem;
 }

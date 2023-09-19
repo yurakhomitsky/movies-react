@@ -6,20 +6,27 @@ import { ContextMenu } from '../../components';
 
 interface MoviesListProps {
 	movies: MovieModel[];
-	onMovieClick: (movie: MovieModel) => void
+	onMovieClick: (movie: MovieModel) => void;
 }
 
 const contextMenuItems = [
-	{ label: 'Edit', action: () => {} },
-	{ label: 'Delete', action: () => {} }]
+	{
+		label: 'Edit', action: () => {
+		}
+	},
+	{
+		label: 'Delete', action: () => {
+		}
+	}];
 
 export function MoviesList({ movies, onMovieClick }: MoviesListProps): ReactElement {
 	return <div className={styles.listGrid}>
 		{movies.map((movie, index) => {
-			return <ContextMenu key={index}  items={contextMenuItems}>
-				<MovieTile movie={movie} onClick={onMovieClick}></MovieTile>
-			</ContextMenu>
+			return <div className={styles.movieListItem} key={index}>
+				<MovieTile movie={movie} onClick={onMovieClick} />
+				<ContextMenu items={contextMenuItems} />
+			</div>;
 		})}
-	</div>
+	</div>;
 }
 
