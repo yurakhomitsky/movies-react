@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import styles from './GenreSelect.module.css';
-import { Button } from '../Button/Button.tsx';
+import { Button } from '../../components';
 import classNames from 'classnames';
 
 export interface Props {

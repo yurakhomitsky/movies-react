@@ -1,0 +1,21 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.text-area {
+    flex: 1;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+}

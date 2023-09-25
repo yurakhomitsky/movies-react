@@ -22,14 +22,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-
-body {
-  margin: 0;
+.form-control-flex-column {
   display: flex;
-  min-width: 320px;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#overlay {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  min-height: 100vh;
+}
+
+#overlay:empty {
+  display: none;
 }
 
 h1 {
