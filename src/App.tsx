@@ -3,8 +3,16 @@ import PosterImg from './assets/Poster.png';
 
 import './App.css';
 import { Header } from './Header/Header.tsx';
-import { ApplicationName, Card, GenreSelect, SearchForm, SearchIcon, SortBy } from './components';
-import { AddMovieButton, MovieDetails, MovieModel, MoviesList } from './Movies';
+import { ApplicationName, Card, Dialog, SearchForm, SearchIcon, SortBy } from './components';
+import {
+	AddMovieButton,
+	MovieDetails,
+	MovieModel,
+	GenreSelect,
+	MoviesList,
+	MovieForm,
+	AddNewMovieModel
+} from './Movies';
 import { Footer } from './Footer/Footer.tsx';
 
 function App(): ReactElement {
@@ -14,9 +22,13 @@ function App(): ReactElement {
 	const [selectedSortOption, setSortOption] = useState<string | null>('Release Date');
 	const genres = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
 	const sortByOptions = ['Release Date', 'Title'];
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	const movieDetails: MovieModel = {
-		image: PosterImg, name: 'SpiderMan', releaseYear: '2004', genres: ['Fight', 'Fantastic'],
+		id: '12',
+		image: PosterImg, name: 'SpiderMan', releaseYear: '2004',
+		genres: ['Fight', 'Fantastic'],
+		movieUrl: 'url',
 		rating: 8.9,
 		duration: '2h 34min',
 		description: `Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). 
@@ -25,6 +37,18 @@ function App(): ReactElement {
 		The lives of these seemingly unrelated people are woven together comprising of a series of funny, 
 		bizarre and uncalled-for incidents.—Soumitra`
 	};
+
+	const emptyMovie: AddNewMovieModel = {
+		image: PosterImg,
+		name: '',
+		releaseYear: '',
+		genres: [],
+		movieUrl: '',
+		rating: 0,
+		duration: '',
+		description: ``
+	};
+
 	return (<>
 		{
 			selectedMovie ? (
@@ -37,7 +61,7 @@ function App(): ReactElement {
 			) : (
 				<Header>
 					<div className="search-app-header flex-between">
-						<ApplicationName /> <AddMovieButton />
+						<ApplicationName /> <AddMovieButton onClick={() => setIsDialogOpen(true)} />
 					</div>
 					<div className="movie-search">
 						<h2 className="search-field-title">Find your movie</h2>
@@ -47,6 +71,9 @@ function App(): ReactElement {
 			)}
 
 		<main>
+			{isDialogOpen && <Dialog width={'60rem'} height={'40rem'} title={'Add new Movie'} onClose={() => setIsDialogOpen(false)}>
+				<MovieForm movie={emptyMovie}></MovieForm>
+			</Dialog>}
 			<Card>
 				<header className="flex-between">
 					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre} />
