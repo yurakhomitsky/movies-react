@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
-import { AddNewMovieModel } from '../models';
+import { AddNewMovieModel, MovieModel } from '../models';
 import { Button, DatePicker, Input, Select, TextArea } from '../../components';
 import styles from './MovieForm.module.css';
 
-interface MovieFormProps<T extends AddNewMovieModel> {
-	movie: T;
-	onFormSubmit?: (formValue: T) => void;
+interface MovieFormProps {
+	movie?: MovieModel;
+	onFormSubmit?: (formValue: MovieModel) => void;
 }
 
 const genres = [
@@ -15,20 +15,31 @@ const genres = [
 	{ label: 'Crime', value: 'Crime' }
 ];
 
-export function MovieForm<T extends AddNewMovieModel>({ movie, onFormSubmit }: MovieFormProps<T>): ReactElement {
+export function MovieForm({ movie, onFormSubmit }: MovieFormProps): ReactElement {
+	const emptyMovie: AddNewMovieModel = {
+		title: '',
+		release_date: '',
+		poster_path: '',
+		vote_average: 0,
+		genres: [],
+		runtime: 0,
+		overview: ''
+	};
+
+	const normalizedMovie = movie ? movie : emptyMovie;
 	return <form className={styles.form} onSubmit={(event) => {
 		event.preventDefault();
-		onFormSubmit?.(Object.fromEntries(new FormData((event.target as HTMLFormElement))) as unknown as T);
+		onFormSubmit?.(Object.fromEntries(new FormData((event.target as HTMLFormElement))) as unknown as MovieModel);
 	}}>
 		<div className={styles.formGrid}>
-			<Input label={'Title'} name={'name'} value={movie.name}/>
-			<DatePicker label={'Release Date'} name={'releaseYear'} value={movie.releaseYear}/>
-			<Input label={'Movie Url'} name={'movieUrl'} value={movie.movieUrl}/>
-			<Input label={'Rating'} name={'rating'} value={movie.rating} type={'number'}/>
-			<Select options={genres} label={'Genre'} name={'genre'} multiple={true} value={movie.genres}/>
-			<Input label={'Runtime'} name={'duration'} value={movie.duration}/>
+			<Input label={'Title'} name={'title'} value={normalizedMovie.title}/>
+			<DatePicker label={'Release Date'} name={'release_date'} value={normalizedMovie.release_date}/>
+			<Input label={'Movie Url'} name={'poster_path'} value={normalizedMovie.poster_path}/>
+			<Input label={'Rating'} name={'vote_average'} value={normalizedMovie.vote_average} type={'number'}/>
+			<Select options={genres} label={'Genre'} name={'genre'} multiple={true} value={normalizedMovie.genres}/>
+			<Input label={'Runtime'} name={'runtime'} value={normalizedMovie.runtime}/>
 		</div>
-		<TextArea className={styles.textArea} label={'Overview'} name={'description'} value={movie.description}/>
+		<TextArea className={styles.textArea} label={'Overview'} name={'overview'} value={normalizedMovie.overview}/>
 		<div className={styles.actionButtons}>
 			<Button type={'reset'}>Reset</Button>
 			<Button primary type={'submit'}>Submit</Button>

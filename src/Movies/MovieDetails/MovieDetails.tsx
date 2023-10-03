@@ -9,19 +9,19 @@ interface MovieDetailsProps {
 
 export function MovieDetails({ movie }: MovieDetailsProps): ReactElement {
 	return <section className={styles.movieDetailsContainer}>
-		<img src={movie.image} alt={movie.name}></img>
+		<img className={styles.movieImage} src={movie.poster_path} alt={movie.title}></img>
 		<div className={styles.movieDetails}>
 			<div className={styles.movieTitle}>
-				<h2>{movie.name}</h2>
-				<span>{movie.rating}</span>
+				<h2>{movie.title}</h2>
+				<span>{movie.vote_average}</span>
 			</div>
 
 			<MovieGenres genres={movie.genres}></MovieGenres>
 			<div className={styles.movieReleaseAndDuration}>
-				<span>{movie.releaseYear}</span>
-				<span>{movie.duration}</span>
+				<span>{movie.release_date}</span>
+				<span>{movie.runtime}</span>
 			</div>
-			<p className={styles.movieDescription}>{movie.description}</p>
+			<p className={styles.movieDescription}>{movie.overview}</p>
 		</div>
 	</section>;
 }

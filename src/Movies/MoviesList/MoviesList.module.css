@@ -1,7 +1,8 @@
 .list-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    grid-auto-rows: 1fr;
+    gap: 1.5rem;
 }
 
 .movie-list-item {

@@ -11,7 +11,7 @@ interface MoviesListProps {
 }
 
 
-export function MoviesList({ movies, onMovieClick }: MoviesListProps): ReactElement {
+export function MoviesList({ movies = [], onMovieClick }: MoviesListProps): ReactElement {
 	const [dialogMode, setDialogMode] = useState<'edit' | 'delete' | null>(null);
 
 	const contextMenuItems = [
@@ -48,7 +48,7 @@ export function MoviesList({ movies, onMovieClick }: MoviesListProps): ReactElem
 
 	return <div className={styles.listGrid}>
 		{movies.map((movie) => {
-			return <div className={styles.movieListItem} key={movie.name}>
+			return <div className={styles.movieListItem} key={movie.id}>
 				<MovieTile movie={movie} onClick={onMovieClick}/>
 				<ContextMenu items={contextMenuItems}/>
 				{dialogMode && dialogMapMode[dialogMode](movie)}
