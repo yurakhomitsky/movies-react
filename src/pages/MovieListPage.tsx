@@ -14,7 +14,6 @@ export function MovieListPage() {
 	const genres = ['All', 'Documentary', 'Adventure', 'Action', 'Science Fiction'];
 	const sortByOptions = [{ label: 'Release Date', value: 'release_date'}, { label: 'Title', value: 'title' }];
 
-
 	return <>  {
 		selectedMovie ? (
 			<Card>

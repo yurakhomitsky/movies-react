@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "jest",
+    "cy:open:e2e": "cypress open --e2e --browser=chrome",
+    "cy:run:e2e": "cypress run --e2e --browser=chrome",
     "cy:open:component": "cypress open --component --browser=chrome",
     "cy:run:component": "cypress run --component --browser=chrome",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

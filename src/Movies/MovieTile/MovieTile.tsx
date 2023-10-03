@@ -9,7 +9,7 @@ interface MovieTileProps {
 }
 
 export function MovieTile({ movie, onClick }: MovieTileProps): ReactElement {
-	return <div className={styles.movieTile} onClick={() => onClick(movie)}>
+	return <div data-testid="movie-item" className={styles.movieTile} onClick={() => onClick(movie)}>
 		<img className={styles.movieImage} src={movie.poster_path} alt={movie.title}></img>
 		<div className={styles.movieTitle}>
 			<h2 className={styles.movieName}>{movie.title}</h2>

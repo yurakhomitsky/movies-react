@@ -15,7 +15,7 @@ export function SortBy({ selectedOption, options, onSelect }: SortByProps): Reac
 
 	return <div className={styles.container}>
 		<label className="text-light" htmlFor="options">Sort By</label>
-		<select className={styles.select} defaultValue={selectedOption ?? undefined} name="options" id="options" onChange={onChange}>
+		<select data-testid="sort-by-select" className={styles.select} defaultValue={selectedOption ?? undefined} name="options" id="options" onChange={onChange}>
 			{options.map((option, index) => {
 				return <option key={index} value={option.value}>{option.label}</option>;
 			})}

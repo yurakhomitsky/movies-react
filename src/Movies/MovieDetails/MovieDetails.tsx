@@ -8,7 +8,7 @@ interface MovieDetailsProps {
 }
 
 export function MovieDetails({ movie }: MovieDetailsProps): ReactElement {
-	return <section className={styles.movieDetailsContainer}>
+	return <section data-testid="movie-details" className={styles.movieDetailsContainer}>
 		<img className={styles.movieImage} src={movie.poster_path} alt={movie.title}></img>
 		<div className={styles.movieDetails}>
 			<div className={styles.movieTitle}>
