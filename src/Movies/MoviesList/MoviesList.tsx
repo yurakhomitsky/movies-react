@@ -52,7 +52,6 @@ export function MoviesList({ movies = [], onMovieClick }: MoviesListProps): Reac
 				<MovieTile movie={movie} onClick={onMovieClick}/>
 				<ContextMenu items={contextMenuItems}/>
 				{dialogMode && dialogMapMode[dialogMode](movie)}
-
 			</div>;
 		})}
 	</div>;

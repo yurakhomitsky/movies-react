@@ -1,0 +1,39 @@
+{
+  "totalAmount": 1,
+  "data": [
+    {
+      "id": 284054,
+      "title": "Black Panther",
+      "tagline": "Long live the king",
+      "vote_average": 7.3,
+      "vote_count": 3788,
+      "release_date": "2018-02-13",
+      "poster_path": "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
+      "overview": "King T'Challa returns home from America to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without.  Using powers reserved to Wakandan kings, T'Challa assumes the Black Panther mantel to join with girlfriend Nakia, the queen-mother, his princess-kid sister,  members of the Dora Milaje (the Wakandan \"special forces\"), and an American secret agent, to prevent Wakanda from being dragged into a world war.",
+      "budget": 200000000,
+      "revenue": 1245257672,
+      "genres": [
+        "Action"
+      ],
+      "runtime": 134
+    },
+    {
+      "id": 181808,
+      "title": "Star Wars: The Last Jedi",
+      "tagline": "The Saga Continues",
+      "vote_average": 7.1,
+      "vote_count": 4732,
+      "release_date": "2017-12-13",
+      "poster_path": "https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+      "overview": "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.",
+      "budget": 200000000,
+      "revenue": 1325937250,
+      "genres": [
+        "Adventure"
+      ],
+      "runtime": 152
+    }
+  ],
+  "offset": 0,
+  "limit": 10
+}
