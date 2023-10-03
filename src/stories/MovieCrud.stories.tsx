@@ -1,7 +1,6 @@
 import { Button, Dialog } from '../components';
 import { Meta, StoryObj } from '@storybook/react';
-import { AddNewMovieModel, MovieModel, MovieForm } from '../Movies';
-import PosterImg from '../assets/Poster.png';
+import { MovieModel, MovieForm } from '../Movies';
 import { useState } from 'react';
 
 const meta = {
@@ -31,34 +30,26 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const emptyMovie: AddNewMovieModel = {
-	image: PosterImg,
-	name: '',
-	releaseYear: '',
-	genres: [],
-	movieUrl: '',
-	rating: 0,
-	duration: '',
-	description: ``
-};
-
 export const AddMovie: Story = {
 	args: {
 		title: 'Add Movie',
-		children: <MovieForm movie={emptyMovie}/>
+		children: <MovieForm />
 	}
 };
 
 const editMovie: MovieModel = {
-	id: '12',
-	image: PosterImg,
-	name: 'Some Name',
-	releaseYear: '2023-06-01',
+	id: 12,
+	title: 'Some Name',
+	release_date: '2023-06-01',
 	genres: ['Comedy'],
-	movieUrl: 'url',
-	rating: 8.5,
-	duration: '30min',
-	description: `Some Description`
+	poster_path: 'url',
+	vote_average: 8.5,
+	runtime: 30,
+	overview: `Some Description`,
+	vote_count: 2,
+	tagline: '',
+	budget: 2,
+	revenue: 2
 };
 
 export const EditMovie: Story = {

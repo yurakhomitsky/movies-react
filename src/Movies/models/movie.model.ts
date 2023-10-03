@@ -1,11 +1,14 @@
 export interface MovieModel {
-	id: number | string;
-	image: string;
-	name: string;
-	movieUrl: string;
-	releaseYear: string;
+	id: number;
+	title: string;
+	tagline: string;
+	vote_average: number;
+	vote_count: number;
+	release_date: string;
+	poster_path: string;
+	overview: string;
+	budget: number;
+	revenue: number;
+	runtime: number;
 	genres: string[];
-	rating: number;
-	duration: string;
-	description: string;
 }
