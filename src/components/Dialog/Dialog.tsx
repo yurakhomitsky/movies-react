@@ -7,7 +7,7 @@ import FocusTrap from 'focus-trap-react';
 
 
 interface DialogProps {
-	title: string;
+	title: string | ReactElement;
 	onClose?: () => void;
 	children?: ReactElement;
 	width?: string;
