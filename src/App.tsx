@@ -26,7 +26,8 @@ function App(): ReactElement {
 
 	const movieDetails: MovieModel = {
 		id: '12',
-		image: PosterImg, name: 'SpiderMan', releaseYear: '2004',
+		image: PosterImg, name: 'SpiderMan',
+		releaseYear: '2023-06-01',
 		genres: ['Fight', 'Fantastic'],
 		movieUrl: 'url',
 		rating: 8.9,

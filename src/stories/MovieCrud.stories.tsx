@@ -2,15 +2,30 @@ import { Button, Dialog } from '../components';
 import { Meta, StoryObj } from '@storybook/react';
 import { AddNewMovieModel, MovieModel, MovieForm } from '../Movies';
 import PosterImg from '../assets/Poster.png';
+import { useState } from 'react';
 
 const meta = {
 	title: 'Example/MovieCrud',
+	component: Dialog,
 	// This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
 	tags: ['autodocs'],
 	parameters: {
-		// More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
-		layout: 'fullscreen',
+		layout: 'fullscreen'
 	},
+	argTypes: {
+		children: {
+			type: 'string'
+		}
+	},
+	render: function Render({ title, children }) {
+		const [isOpen, setIsOpen] = useState(false);
+		return <>
+			<button type={'button'} onClick={() => setIsOpen(true)}>Toggle</button>
+			{isOpen && <Dialog title={title} onClose={() => setIsOpen(false)}>
+				{children}
+      </Dialog>}
+		</>;
+	}
 } satisfies Meta;
 
 export default meta;
@@ -28,10 +43,9 @@ const emptyMovie: AddNewMovieModel = {
 };
 
 export const AddMovie: Story = {
-	render: () => {
-		return <Dialog title={'Add Movie'} >
-			<MovieForm movie={emptyMovie} />
-		</Dialog>
+	args: {
+		title: 'Add Movie',
+		children: <MovieForm movie={emptyMovie}/>
 	}
 };
 
@@ -39,7 +53,7 @@ const editMovie: MovieModel = {
 	id: '12',
 	image: PosterImg,
 	name: 'Some Name',
-	releaseYear: '2023',
+	releaseYear: '2023-06-01',
 	genres: ['Comedy'],
 	movieUrl: 'url',
 	rating: 8.5,
@@ -48,20 +62,18 @@ const editMovie: MovieModel = {
 };
 
 export const EditMovie: Story = {
-	render: () => {
-		return <Dialog title={'Edit Movie'} >
-			<MovieForm movie={editMovie} />
-		</Dialog>
+	args: {
+		title: 'Edit Movie',
+		children: <MovieForm movie={editMovie}/>
 	}
 };
 
 export const DeleteMovie: Story = {
-	render: () => {
-		return <Dialog title={'Delete Movie'} >
-			<>
-				<p>Are you sure want to delete this Movie?</p>
-				<Button primary>Confirm</Button>
-			</>
-		</Dialog>
+	args: {
+		title: 'Delete Movie',
+		children: <>
+			<p>Are you sure want to delete this Movie?</p>
+			<Button primary>Confirm</Button>
+		</>
 	}
 };
