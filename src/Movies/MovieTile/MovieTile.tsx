@@ -5,11 +5,10 @@ import { MovieGenres } from '../MovieGenres/MovieGenres.tsx';
 
 interface MovieTileProps {
 	movie: MovieModel;
-	onClick: (movie: MovieModel) => void;
 }
 
-export function MovieTile({ movie, onClick }: MovieTileProps): ReactElement {
-	return <div data-testid="movie-item" className={styles.movieTile} onClick={() => onClick(movie)}>
+export function MovieTile({ movie }: MovieTileProps): ReactElement {
+	return <div data-testid="movie-item" className={styles.movieTile}>
 		<img className={styles.movieImage} src={movie.poster_path} alt={movie.title}></img>
 		<div className={styles.movieTitle}>
 			<h2 className={styles.movieName}>{movie.title}</h2>

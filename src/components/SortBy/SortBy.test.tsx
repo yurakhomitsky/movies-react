@@ -4,7 +4,7 @@ import { SortBy } from './SortBy'; // Import your component
 
 
 describe('SortBy', () => {
-	const mockOptions = ['Option 1', 'Option 2', 'Option 3'];
+	const mockOptions = [{ label: 'Option 1', value: 'Option 1' }, { label: 'Option 2', value: 'Option 2' }, { label: 'Option 3', value: 'Option 3' }];
 	const mockSelectedOption = 'Option 2';
 	const mockOnSelect = jest.fn();
 
@@ -23,7 +23,7 @@ describe('SortBy', () => {
 		const selectElement = getByLabelText('Sort By');
 
 		for (const option of mockOptions) {
-			expect(selectElement).toHaveTextContent(option);
+			expect(selectElement).toHaveTextContent(option.label);
 		}
 	});
 

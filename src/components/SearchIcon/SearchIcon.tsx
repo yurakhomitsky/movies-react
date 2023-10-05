@@ -3,7 +3,7 @@ import SvgIcon from './SvgIcon.tsx';
 import { Button } from '../Button/Button.tsx';
 
 interface SearchIconProps {
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 export function SearchIcon({ onClick }: SearchIconProps): ReactElement {

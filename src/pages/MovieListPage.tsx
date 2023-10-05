@@ -1,39 +1,38 @@
-import { ApplicationName, Card, Dialog, SearchForm, SearchIcon, SortBy } from '../components';
-import { AddMovieButton, GenreSelect, MovieDetails, MovieForm, MovieModel, MoviesList } from '../Movies';
-import { Header } from '../Header/Header.tsx';
+import { Card, Dialog, SortBy } from '../components';
+import { GenreSelect, MovieForm, MoviesList, useMovies } from '../Movies';
 import { useState } from 'react';
-import { useMovies } from './hooks/useMovies.ts';
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { initialSearchParams } from './initial-search-params.ts';
 
 export function MovieListPage() {
-	const [searchTerm, setSearchTerm] = useState('');
-	const [selectedMovie, setSelectedMovie] = useState<MovieModel | null>(null);
-	const [selectedGenre, setGenre] = useState<string | null>('All');
-	const [sortBy, setSortOption] = useState<string | null>('Release Date');
-	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const { movies } = useMovies({ searchTerm, sortBy, selectedGenre: selectedGenre === 'All' ? null : selectedGenre })
+	const [searchParams, setSearchParams] = useSearchParams(initialSearchParams);
+	const searchTerm = searchParams.get('searchTerm');
+	const genre = searchParams.get('genre');
+	const sortBy = searchParams.get('sortBy');
+
 	const genres = ['All', 'Documentary', 'Adventure', 'Action', 'Science Fiction'];
 	const sortByOptions = [{ label: 'Release Date', value: 'release_date'}, { label: 'Title', value: 'title' }];
 
-	return <>  {
-		selectedMovie ? (
-			<Card>
-				<div className="flex-between">
-					<ApplicationName/> <SearchIcon onClick={() => setSelectedMovie(null)}></SearchIcon>
-				</div>
-				<MovieDetails movie={selectedMovie}/>
-			</Card>
-		) : (
-			<Header>
-				<div className="search-app-header flex-between">
-					<ApplicationName/> <AddMovieButton onClick={() => setIsDialogOpen(true)}/>
-				</div>
-				<div className="movie-search">
-					<h2 className="search-field-title">Find your movie</h2>
-					<SearchForm searchTerm={searchTerm} onSearch={setSearchTerm}/>
-				</div>
-			</Header>
-		)}
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+	const { movies } = useMovies({ searchTerm, sortBy, genre: genre === 'All' ? null : genre })
+
+	const setSortOptionParams = (option: string) => {
+		setSearchParams((prevSearchParams) => {
+			prevSearchParams.set('sortBy', option || initialSearchParams.sortBy)
+			return prevSearchParams
+		});
+	};
+
+	const setGenreParams = (genre: string) => {
+		setSearchParams((prevSearchParams) => {
+			prevSearchParams.set('genre', genre || initialSearchParams.genre)
+			return prevSearchParams
+		});
+	};
+
+	return <>
+		<Outlet />
 		<main>
 			{isDialogOpen &&
         <Dialog width={'60rem'} height={'40rem'} title={'Add new Movie'} onClose={() => setIsDialogOpen(false)}>
@@ -41,10 +40,10 @@ export function MovieListPage() {
         </Dialog>}
 			<Card>
 				<header className="flex-between">
-					<GenreSelect selectedGenre={selectedGenre} genres={genres} onSelect={setGenre}/>
-					<SortBy options={sortByOptions} selectedOption={sortBy} onSelect={setSortOption}/>
+					<GenreSelect selectedGenre={genre} genres={genres} onSelect={setGenreParams}/>
+					<SortBy options={sortByOptions} selectedOption={sortBy} onSelect={setSortOptionParams}/>
 				</header>
-				<MoviesList movies={movies} onMovieClick={setSelectedMovie}/>
+				<MoviesList movies={movies}/>
 			</Card>
 		</main>
 	</>;
