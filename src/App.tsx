@@ -2,12 +2,13 @@ import { ReactElement } from 'react';
 
 import './App.css';
 import { Footer } from './Footer/Footer.tsx';
-import { MovieListPage } from './pages';
+import { RouterProvider } from 'react-router-dom';
+import { appRouting } from './pages/routing.tsx';
 
 function App(): ReactElement {
 
 	return (<>
-		<MovieListPage />
+		<RouterProvider router={appRouting} />
 		<Footer />
 	</>);
 }

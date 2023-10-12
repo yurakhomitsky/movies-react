@@ -1,2 +1,3 @@
 export { MovieListPage } from './MovieListPage.tsx'
-export { useMovies } from './hooks/useMovies.ts'
+export { SearchPage } from './SearchPage.tsx';
+export { MovieDetailsPage } from './MovieDetailsPage.tsx';

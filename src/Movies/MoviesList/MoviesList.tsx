@@ -4,16 +4,16 @@ import { ReactElement, useState } from 'react';
 import { MovieTile } from '../MovieTile/MovieTile.tsx';
 import { Button, ContextMenu, Dialog } from '../../components';
 import { MovieForm } from '../MovieForm/MovieForm.tsx';
+import { NavLink, useSearchParams } from 'react-router-dom';
 
 interface MoviesListProps {
 	movies: MovieModel[];
-	onMovieClick: (movie: MovieModel) => void;
 }
 
 
-export function MoviesList({ movies = [], onMovieClick }: MoviesListProps): ReactElement {
+export function MoviesList({ movies = [] }: MoviesListProps): ReactElement {
 	const [dialogMode, setDialogMode] = useState<'edit' | 'delete' | null>(null);
-
+	const [searchParams] = useSearchParams();
 	const contextMenuItems = [
 		{
 			label: 'Edit', action: () => {
@@ -49,7 +49,9 @@ export function MoviesList({ movies = [], onMovieClick }: MoviesListProps): Reac
 	return <div className={styles.listGrid}>
 		{movies.map((movie) => {
 			return <div className={styles.movieListItem} key={movie.id}>
-				<MovieTile movie={movie} onClick={onMovieClick}/>
+				<NavLink to={{ pathname: movie.id.toString(), search: searchParams.toString() }} >
+					<MovieTile movie={movie} />
+				</NavLink>
 				<ContextMenu items={contextMenuItems}/>
 				{dialogMode && dialogMapMode[dialogMode](movie)}
 			</div>;
