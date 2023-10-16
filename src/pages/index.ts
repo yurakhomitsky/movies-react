@@ -1,3 +1,3 @@
-export { MovieListPage } from './MovieListPage.tsx'
-export { SearchPage } from './SearchPage.tsx';
-export { MovieDetailsPage } from './MovieDetailsPage.tsx';
+export { MovieListPage } from './Movies/MovieListPage.tsx'
+export { SearchPage } from './Search/SearchPage.tsx';
+export { MovieDetailsPage } from './MovieDetails/MovieDetailsPage.tsx';

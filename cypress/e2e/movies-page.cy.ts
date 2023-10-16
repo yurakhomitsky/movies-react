@@ -1,4 +1,4 @@
-import { initialSearchParams } from '../../src/pages/initial-search-params.ts';
+import { initialSearchParams } from '../../src/pages/const/initial-search-params.ts';
 
 describe('MoviesPage', { testIsolation: false }, () => {
 	before(() => {
