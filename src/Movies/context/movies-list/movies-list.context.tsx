@@ -1,3 +1,4 @@
+'use client'
 import { MovieModel } from '../../models';
 import { createContext, useCallback, useEffect, useRef, useState } from 'react';
 import axios, { CancelTokenSource } from 'axios';
@@ -30,7 +31,7 @@ export function MovieListProvider({ children }: { children: React.ReactNode }) {
 
 			cancelTokenSourceRef.current = axios.CancelToken.source();
 			latestMoviesRequestParams.current = movieParams;
-			const response = await fetchMovies(movieParams, cancelTokenSourceRef.current);
+			const response = await fetchMovies(movieParams);
 
 			setMovies(response);
 		} catch (error) {

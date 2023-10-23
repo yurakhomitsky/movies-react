@@ -1,4 +1,5 @@
-import React, { PropsWithChildren, ReactElement, useState } from 'react';
+'use client'
+import React, { FormEvent, PropsWithChildren, ReactElement } from 'react';
 import styles from './SearchForm.module.css';
 import { Button } from '../Button/Button.tsx';
 
@@ -8,33 +9,22 @@ interface Props {
 }
 
 export function SearchForm({ searchTerm, onSearch }: PropsWithChildren<Props>): ReactElement {
-	const [query, setQuery] = useState(searchTerm);
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setQuery(event.target.value);
-	};
-
-	const handleKeyPress = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter') {
-			performSearch();
-		}
-	};
-
-	const performSearch = () => {
-		onSearch(query);
-	};
+	const onSubmit = (event: FormEvent) => {
+		event.preventDefault();
+		onSearch(Object.fromEntries(new FormData((event.target as HTMLFormElement))).searchTerm as string)
+	}
 
 	return (
-		<div className={styles.searchContainer}>
+		<form className={styles.searchContainer} onSubmit={onSubmit}>
 			<input
+				defaultValue={searchTerm}
+				name='searchTerm'
 				data-testid="search-input"
 				placeholder="What do you want to watch?"
 				type="text"
-				value={query}
-				onChange={handleInputChange}
-				onKeyDown={handleKeyPress}
 			/>
-			<Button data-testid="search-button" primary={true} onClick={performSearch}>Search</Button>
-		</div>
+			<Button type={'submit'} data-testid="search-button" primary={true}>Search</Button>
+		</form>
 	);
 }

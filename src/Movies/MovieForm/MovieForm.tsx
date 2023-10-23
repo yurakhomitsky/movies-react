@@ -1,3 +1,4 @@
+'use client'
 import { ReactElement } from 'react';
 import { MovieFormModel } from '../models';
 import { Button, DatePicker, Input, Select, TextArea } from '../../components';
@@ -32,9 +33,9 @@ export function MovieForm({ movie, onFormSubmit }: MovieFormProps): ReactElement
 	const { control, handleSubmit, formState: { isValid, isSubmitted, isDirty } } = useForm<MovieFormModel>({ defaultValues });
 
 	const onSubmit: SubmitHandler<MovieFormModel> = (data: MovieFormModel) => {
+		console.log('submit', data)
 		onFormSubmit?.(data);
 	};
-
 
 	const rules: Record<keyof MovieFormModel, Omit<RegisterOptions<MovieFormModel, keyof MovieFormModel>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>>  = {
 		title: {

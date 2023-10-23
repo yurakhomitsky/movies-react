@@ -1,4 +1,4 @@
-.genre-list {
+.genreList {
     list-style: none;
     display: flex;
     gap: 10px;
@@ -6,7 +6,7 @@
     margin: 0;
 }
 
-.genre-list button {
+.genreList button {
     color: #FFF;
     font-size: 1rem;
     font-style: normal;
@@ -20,6 +20,6 @@
     transition: border-color 0.3s ease;
 }
 
-.genre-list button.active {
+.genreList button.active {
     border-bottom-color: var(--primary-color);
 }

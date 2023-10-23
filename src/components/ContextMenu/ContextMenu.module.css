@@ -1,14 +1,14 @@
-.context-menu-container {
+.contextMenuContainer {
     position: absolute;
     right: 5px;
     top: 5px;
 }
 
-.context-menu-container button {
+.contextMenuContainer button {
     border-radius: 50px;
 }
 
-.context-menu {
+.contextMenu {
     position: absolute;
     z-index: 10;
     top: 105%;
@@ -17,12 +17,12 @@
     padding: 0.5rem;
 }
 
-.context-menu > div {
+.contextMenu > div {
     padding: 10px;
     cursor: pointer;
 }
 
-.context-menu > div:hover {
+.contextMenu > div:hover {
     background-color: var(--primary-color);
 }
 

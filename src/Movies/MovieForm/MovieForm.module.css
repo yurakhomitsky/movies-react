@@ -4,17 +4,17 @@
     height: 100%;
 }
 
-.form-grid {
+.formGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
-.text-area {
+.textArea {
     flex: 1;
 }
 
-.action-buttons {
+.actionButtons {
     display: flex;
     justify-content: flex-end;
     gap: 1.2rem;
