@@ -1,46 +1,56 @@
 import { MovieModel } from '../models';
 import styles from './MoviesList.module.css';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { MovieTile } from '../MovieTile/MovieTile.tsx';
 import { Button, ContextMenu, Dialog } from '../../components';
-import { MovieForm } from '../MovieForm/MovieForm.tsx';
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 
 interface MoviesListProps {
 	movies: MovieModel[];
+	onMovieDelete?: (movie: MovieModel) => void
 }
 
 
-export function MoviesList({ movies = [] }: MoviesListProps): ReactElement {
-	const [dialogMode, setDialogMode] = useState<'edit' | 'delete' | null>(null);
+export function MoviesList({ movies = [], onMovieDelete }: MoviesListProps): ReactElement {
+	const [dialogMode, setDialogMode] = useState<'delete' | null>(null);
 	const [searchParams] = useSearchParams();
-	const contextMenuItems = [
-		{
-			label: 'Edit', action: () => {
-				setDialogMode('edit');
-			}
+	const preservedParams = searchParams.toString();
+	const navigate = useNavigate();
+
+
+	const contextMenuPerMovie = useCallback(
+		(movie: MovieModel) => {
+			return [
+				{
+					label: 'Edit',
+					action: () => {
+						navigate({
+							pathname: `/${movie.id}/edit`, search: preservedParams
+						}, { state: { movie } });
+					}
+				},
+				{
+					label: 'Delete',
+					action: () => {
+						setDialogMode('delete');
+					}
+				}
+			];
 		},
-		{
-			label: 'Delete', action: () => {
-				setDialogMode('delete');
-			}
-		}];
+		[navigate]
+	);
 
 	const dialogMapMode = {
-		['edit']: (movieDetails: MovieModel) => {
-			return <Dialog width={'60rem'} height={'40rem'} title={'Edit Movie'} onClose={() => {
-				setDialogMode(null);
-			}}>
-				<MovieForm movie={movieDetails}></MovieForm>
-			</Dialog>;
-		},
-		['delete']: () => {
+		['delete']: (movie: MovieModel) => {
 			return <Dialog title={'Delete Movie'} onClose={() => {
 				setDialogMode(null);
 			}}>
 				<>
 					<p>Are you sure want to delete this Movie?</p>
-					<Button primary>Confirm</Button>
+					<Button primary onClick={() => {
+						onMovieDelete?.(movie);
+						setDialogMode(null)
+					}}>Confirm</Button>
 				</>
 			</Dialog>;
 		}
@@ -48,11 +58,11 @@ export function MoviesList({ movies = [] }: MoviesListProps): ReactElement {
 
 	return <div className={styles.listGrid}>
 		{movies.map((movie) => {
-			return <div className={styles.movieListItem} key={movie.id}>
-				<NavLink to={{ pathname: movie.id.toString(), search: searchParams.toString() }} >
-					<MovieTile movie={movie} />
+			return <div data-testid={movie.title} className={styles.movieListItem} key={movie.id}>
+				<NavLink to={{ pathname: movie.id.toString(), search: searchParams.toString() }}>
+					<MovieTile movie={movie}/>
 				</NavLink>
-				<ContextMenu items={contextMenuItems}/>
+				<ContextMenu items={contextMenuPerMovie(movie)}/>
 				{dialogMode && dialogMapMode[dialogMode](movie)}
 			</div>;
 		})}

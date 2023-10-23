@@ -1,10 +1,10 @@
-import { BaseFormControlProps } from '../models/base-form-control-props.ts';
-import { ReactElement } from 'react';
+import React, { forwardRef } from 'react';
 import { Input } from '../Input/Input.tsx';
 
-interface DatePickerProps extends BaseFormControlProps<HTMLInputElement> {
+interface DatePickerProps extends React.InputHTMLAttributes<HTMLInputElement> {
+	label: string
 }
 
-export function DatePicker({ label, value, name, required, onChange }: DatePickerProps): ReactElement {
-	return <Input type={'date'} label={label} value={value} required={required} name={name} onChange={onChange} />
-}
+export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({ ...rest }, ref) => {
+	return <Input type={'date'} ref={ref} {...rest} />
+})

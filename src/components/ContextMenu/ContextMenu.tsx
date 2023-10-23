@@ -26,7 +26,7 @@ export function ContextMenu({ items }: ContextMenuProps) {
 
 				>
 					{items.map((item, index) => (
-						<div key={index} onClick={item.action}>
+						<div data-test-id={item.label} key={index} onClick={item.action}>
 							{item.label}
 						</div>
 					))}

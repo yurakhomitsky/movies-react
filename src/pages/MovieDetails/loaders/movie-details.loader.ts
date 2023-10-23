@@ -1,4 +1,4 @@
-import { fetchMovieById } from '../../Movies';
+import { fetchMovieById } from '../../../Movies';
 import { LoaderFunction } from 'react-router-dom';
 
 export const movieDetailsLoader: LoaderFunction = async ({ params })  => {

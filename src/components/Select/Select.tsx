@@ -1,18 +1,17 @@
-import { BaseFormControlProps } from '../models/base-form-control-props.ts';
 import styles from './Select.module.css';
-import { ReactElement } from 'react';
+import React, { forwardRef } from 'react';
 
 
-interface SelectProps extends BaseFormControlProps<HTMLSelectElement> {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+	label: string
 	options: Array<{ value: string; label: string }>;
-	multiple?: boolean
 }
 
-export function Select({ label, options, value, name, required, onChange, multiple }: SelectProps): ReactElement {
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ label, multiple, options, name, ...rest }, ref) => {
 	return (
 		<div className="form-control-flex-column">
 			<label htmlFor={name}>{label}</label>
-			<select multiple={multiple} defaultValue={value} name={name} required={required} onChange={onChange} className={styles.select}>
+			<select {...rest} ref={ref} className={styles.select} multiple={multiple}>
 				{options.map((option,) => (
 					<option key={option.value} value={option.value}>
 						{option.label}
@@ -21,4 +20,4 @@ export function Select({ label, options, value, name, required, onChange, multip
 			</select>
 		</div>
 	);
-}
+})
