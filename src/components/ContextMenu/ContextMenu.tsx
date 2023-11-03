@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import styles from './ContextMenu.module.css';
 import { Card } from '../Card/Сard.tsx';
@@ -26,7 +27,7 @@ export function ContextMenu({ items }: ContextMenuProps) {
 
 				>
 					{items.map((item, index) => (
-						<div data-test-id={item.label} key={index} onClick={item.action}>
+						<div data-test-id={item.label} key={index}>
 							{item.label}
 						</div>
 					))}

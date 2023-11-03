@@ -8,7 +8,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, name, ...rest }, ref)  => {
 	return (
 		<div className="form-control-flex-column">
-			<label htmlFor={name}>{label}</label>
+			<label className={styles.label} htmlFor={name}>{label}</label>
 			<input
 				{...rest}
 				ref={ref}

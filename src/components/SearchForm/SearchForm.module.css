@@ -1,10 +1,10 @@
-.search-container {
+.searchContainer {
     display: flex;
     gap: 20px;
     min-height: 57px;
 }
 
-.search-container input {
+.searchContainer input {
     border: none;
     border-radius: 0.25rem;
     opacity: 0.8;
@@ -13,6 +13,6 @@
     font-size: 1.2rem;
 }
 
-.search-container button {
+.searchContainer button {
     flex: 0 0 240px;
 }

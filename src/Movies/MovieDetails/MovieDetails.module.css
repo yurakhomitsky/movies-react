@@ -1,28 +1,28 @@
-.movie-details-container {
+.movieDetailsContainer {
     display: flex;
     gap: 2rem;
     height: 400px;
 }
 
-.movie-image {
+.movieImage {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
 }
 
-.movie-details {
+.movieDetails {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.movie-title {
+.movieTitle {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.movie-title h2 {
+.movieTitle h2 {
     font-size: 2.5rem;
     font-style: normal;
     font-weight: 300;
@@ -30,7 +30,7 @@
     margin: 0;
 }
 
-.movie-title span {
+.movieTitle span {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -42,13 +42,13 @@
     border: 1px solid lightslategray;
 }
 
-.movie-release-and-duration {
+.movieReleaseAndDuration {
     display: flex;
     gap: 2rem;
     color: var(--primary-color);
 }
 
-.movie-description {
+.movieDescription {
     font-size: 1rem;
     font-style: normal;
     font-weight: 300;

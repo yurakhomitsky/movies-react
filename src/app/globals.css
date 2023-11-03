@@ -1,4 +1,4 @@
-@import "./theme/theme.css";
+@import "../theme/theme.css";
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -28,6 +28,39 @@
   margin-bottom: 10px;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.search-field-title {
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.search-app-header {
+  align-items: flex-start;
+  flex: 2;
+}
+
+.movie-search {
+  flex: 4;
+}
+
+
 #overlay {
   position: fixed;
   z-index: 1000;
@@ -46,4 +79,5 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
 

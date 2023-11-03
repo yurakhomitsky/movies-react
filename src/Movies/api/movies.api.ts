@@ -1,6 +1,6 @@
 import { httpClient } from './config/axios-movies.config.ts';
 import { CreateMovieModel, MovieModel } from '../models';
-import { CancelToken, CancelTokenSource } from 'axios';
+import { CancelToken } from 'axios';
 
 export interface MoviesParams {
 	searchTerm: string | null;
@@ -10,31 +10,47 @@ export interface MoviesParams {
 
 export async function fetchMovies(
 	{ searchTerm, sortBy, genre }: MoviesParams,
-	cancelToken: CancelTokenSource
 ): Promise<MovieModel[]> {
-	const response = await httpClient.get<{ data: MovieModel[] }>('/movies', {
-		params: {
-			search: searchTerm,
-			searchBy: 'title',
-			filter: genre ? [genre].join(',') : '',
-			sortBy,
-			sortOrder: 'desc'
-		},
-		cancelToken: cancelToken.token
-	});
 
-	return response.data.data;
+	const params = new URLSearchParams({
+		search: searchTerm ?? '',
+		searchBy: 'title',
+		filter: genre ? [genre].join(',') : '',
+		sortBy: sortBy ?? 'title',
+		sortOrder: 'desc'
+	})
+
+	const response = await fetch('http://localhost:4000/movies/?' + params)
+
+	if (!response.ok) {
+		throw new Error('Failed to fetch data')
+	}
+
+	return response.json().then((resp) => resp.data)
 }
 
 
 export async function fetchMovieById(id: string): Promise<MovieModel> {
-	const response = await httpClient.get<MovieModel>(`/movies/${id}`);
-	return response.data;
+	const res = await fetch(`http://localhost:4000/movies/${id}`)
+
+	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
+		throw new Error('Failed to fetch data')
+	}
+
+	return res.json()
 }
 
 
-export function createMovie(movie: CreateMovieModel, cancelToken: CancelToken): Promise<MovieModel> {
-	return httpClient.post<MovieModel, MovieModel, CreateMovieModel>('/movies', movie, { cancelToken });
+export  async function createMovie(movie: CreateMovieModel): Promise<MovieModel> {
+	const res = await fetch(`http://localhost:4000/movies`, { method: 'POST',  body: JSON.stringify(movie) })
+
+	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
+		throw new Error('Failed to fetch data')
+	}
+
+	return res.json()
 }
 
 export function updateMovie(movie: MovieModel, cancelToken: CancelToken): Promise<MovieModel> {

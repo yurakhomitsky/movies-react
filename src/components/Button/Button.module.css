@@ -10,18 +10,18 @@
     transition: border-color 0.25s;
 }
 
-.primary-button {
+.primaryButton {
     background-color: var(--primary-color);
     color: var(--text-light);
     text-transform: uppercase;
 }
 
-.primary-button:hover {
+.primaryButton:hover {
     color: var(--text-dark);
     border: 1px solid var(--text-dark);
 }
 
-.secondary-button {
+.secondaryButton {
     background-color: var(--background-dark);
     color: var(--primary-color);
     text-transform: uppercase;

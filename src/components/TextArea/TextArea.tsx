@@ -11,7 +11,7 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({ label, name, className, ...rest }: TextAreaProps, ref) => {
 	return (
 		<div className={classNames(className, 'form-control-flex-column')}>
-			<label htmlFor={name}>{label}</label>
+			<label className={styles.label} htmlFor={name}>{label}</label>
 			<textarea
 				ref={ref}
 				{...rest}
